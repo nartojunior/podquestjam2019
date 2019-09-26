@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     public bool InSlide { get; set; }
-    Direction lastDirection;
 
+    Direction lastDirection;
+    
     // Update is called once per frame
     void Update()
     {
@@ -32,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
-
         if (Input.GetButtonDown("Crouch"))
         {
             crouch = true;
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
+
     }
 
     void FixedUpdate() {
@@ -51,8 +52,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        }
-        
+        }        
         jump = false;
     }
 
@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         switch (lastDirection)
         {
             case Direction.Left:
-                slideMove = -runSpeed; break;
+                slideMove = runSpeed; break;
             case Direction.Right:
                 slideMove = runSpeed; break;
             default: break;
@@ -72,4 +72,5 @@ public class PlayerMovement : MonoBehaviour
 
         InSlide = true;
     }
+
 }
